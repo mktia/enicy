@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">ENICY</string>
+    <string name="userName">Username</string>
+    <string name="password">Password</string>
+    <string name="signIn">Sign in</string>
+
+    <!-- Label for editor menu option to save account and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <!-- Label for editor overflow menu option that deletes the current account [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+    <!-- Label for overflow menu option that adds your account data in the app [CHAR LIMIT=20] -->
+    <string name="action_add_account">Add Your Accounts</string>
+
+    <!-- Label for overflow menu option that deletes all account data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Accounts</string>
+
+    <string name="editor_description">Edit information of your account.</string>
+
+    <!-- Title text for the empty view, which describes the empty image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">No account is registered</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add my account [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding your account</string>
+
+    <!-- Title for the activity to add your new account [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_account">Add your account</string>
+
+    <string name="editor_activity_title_edit_account">Edit account</string>
+
+    <!-- Toast message in editor when new account has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_account_successful">Account saved</string>
+
+    <!-- Toast message in editor when new account has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_account_failed">Error with saving account</string>
+
+    <!-- Toast message in editor when current account was successfully updated [CHAR_LIMIT=NONE] -->
+    <string name="editor_update_account_successful">Account updated</string>
+
+    <!-- Toast message in editor when current account has failed to be updated [CHAR_LIMIT=NONE] -->
+    <string name="editor_update_account_failed">Error with updating account</string>
+
+
+    <!-- Toast message in editor when current account was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_account_successful">Account deleted</string>
+
+    <!-- Toast message in editor when current account has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_account_failed">Error with deleting account</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+
+    <!-- Dialog button text for the option to keep editing the current account [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+
+    <!-- Dialog message to ask the user to confirm deleting the current account [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg">Delete this account?</string>
+
+    <!-- Dialog button text for the option to confirm deleting the current account [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+
+    <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+    <string name="user_list_only_following">Not followback</string>
+    <string name="user_list_only_followers">Not following</string>
+    <string name="user_list_mulual_friends">Mutual friends</string>
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="no_users">No users found.</string>
+    <string name="empty_username_or_password">Username or Password is empty</string>
+    <string name="wrong_account_information">Wrong username or password</string>
+</resources>

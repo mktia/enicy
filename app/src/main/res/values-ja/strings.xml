@@ -1,0 +1,74 @@
+<resources>
+    <string name="userName">ユーザー名</string>
+    <string name="password">パスワード</string>
+    <string name="signIn">ログイン</string>
+
+    <!-- Label for editor menu option to save account and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">保存</string>
+
+    <!-- Label for editor overflow menu option that deletes the current account [CHAR LIMIT=20] -->
+    <string name="action_delete">消去</string>
+
+    <!-- Label for overflow menu option that adds your account data in the app [CHAR LIMIT=20] -->
+    <string name="action_add_account">アカウント追加</string>
+
+    <!-- Label for overflow menu option that deletes all account data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">全アカウント消去</string>
+
+    <string name="editor_description">アカウント情報を入力してください</string>
+
+    <!-- Title text for the empty view, which describes the empty image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">アカウントがありません</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add my account [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">アカウントを登録してください</string>
+
+    <!-- Title for the activity to add your new account [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_account">アカウントを追加する</string>
+
+    <string name="editor_activity_title_edit_account">アカウントを編集する</string>
+
+    <!-- Toast message in editor when new account has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_account_successful">保存しました</string>
+
+    <!-- Toast message in editor when new account has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_account_failed">保存に失敗しました</string>
+
+    <!-- Toast message in editor when current account was successfully updated [CHAR_LIMIT=NONE] -->
+    <string name="editor_update_account_successful">更新しました</string>
+
+    <!-- Toast message in editor when current account has failed to be updated [CHAR_LIMIT=NONE] -->
+    <string name="editor_update_account_failed">更新に失敗しました</string>
+
+
+    <!-- Toast message in editor when current account was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_account_successful">消去しました</string>
+
+    <!-- Toast message in editor when current account has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_account_failed">消去に失敗しました</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">保存せずに終了しますか？</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">破棄</string>
+
+    <!-- Dialog button text for the option to keep editing the current account [CHAR LIMIT=20] -->
+    <string name="keep_editing">編集を続ける</string>
+
+    <!-- Dialog message to ask the user to confirm deleting the current account [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg">アカウントを消去しますか？</string>
+
+    <!-- Dialog button text for the option to confirm deleting the current account [CHAR LIMIT=20] -->
+    <string name="delete">消去</string>
+
+    <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
+    <string name="cancel">キャンセル</string>
+    <string name="user_list_only_following">フォロバなし</string>
+    <string name="user_list_only_followers">未フォロー</string>
+    <string name="user_list_mulual_friends">相互</string>
+    <string name="no_internet_connection">インターネットに接続されていません</string>
+    <string name="no_users">ユーザーは見つかりませんでした</string>
+    <string name="empty_username_or_password">ユーザー名またはパスワードが入力されていません</string>
+    <string name="wrong_account_information">ユーザー名またはパスワードが間違っています</string>
+</resources>
