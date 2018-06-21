@@ -51,6 +51,7 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
         View rootView = inflater.inflate(R.layout.account_list, container, false);
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         ListView userListView = rootView.findViewById(R.id.list);
@@ -68,7 +69,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
             LoaderManager loaderManager = getLoaderManager();
 
             loaderManager.initLoader(NOT_FOLLOWING_LOADER_ID, null, this);
-            Log.d(LOG_TAG, "Call initLoader");
         } else {
             // If not connect to the Internet
             mProgressBar.setVisibility(View.GONE);
@@ -89,7 +89,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
         Uri currentAccountUri = intent.getData();
 
         if (currentAccountUri == null) {
-            Log.d(LOG_TAG, "onCreateLoader: uri is null.");
             return null;
         }
 
@@ -112,8 +111,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
                 Toast.makeText(getContext(), R.string.empty_username_or_password, Toast.LENGTH_SHORT).show();
                 return null;
             }
-        } else {
-            Log.d(LOG_TAG, "onItemClick: cursor is null.");
         }
 
         // If cursor is null, do not create loader.
@@ -122,8 +119,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
 
     @Override
     public void onLoadFinished(Loader<List<InstagramUserSummary>> loader, List<InstagramUserSummary> users) {
-        Log.d(LOG_TAG, "Call onLoadFinished");
-
         // Clear the adapter of previous data.
         mUserAdapter.clear();
 
@@ -140,8 +135,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
 
     @Override
     public void onLoaderReset(Loader<List<InstagramUserSummary>> loader) {
-        Log.d(LOG_TAG, "Call onLoaderReset");
-
         // Loader reset, so we can clear out our existing data.
         mUserAdapter.clear();
     }

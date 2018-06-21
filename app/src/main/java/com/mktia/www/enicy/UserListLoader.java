@@ -28,13 +28,10 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
         mUserName = userName;
         mPassword = password;
         mIndex = index;
-
-        Log.d(LOG_TAG, "UserListLoader: " + mUserName);
     }
 
     @Override
     protected void onStartLoading() {
-        Log.v(LOG_TAG, "Call onStartLoading");
         forceLoad();
     }
 
@@ -121,7 +118,7 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
 
         for (InstagramUserSummary following: followingList) {
             int count = 0;
-            for (InstagramUserSummary followers: followersList) {
+            for (InstagramUserSummary followers: onlyFollowedList) {
                 count++;
                 if (following.equals(followers)) {
                     mutualList.add(following);
@@ -133,8 +130,6 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
                 }
             }
         }
-
-        Log.d(LOG_TAG, "analyse: finish this process.");
 
         switch (index) {
             // not followback

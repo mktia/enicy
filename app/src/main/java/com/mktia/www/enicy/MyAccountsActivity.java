@@ -124,7 +124,6 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
 
     private void deleteAllMyAccounts() {
         int rowsDeleted = getContentResolver().delete(MyAccountsEntry.CONTENT_URI, null, null);
-        Log.v("MyAccountsActivity", rowsDeleted + " rows deleted from account database");
     }
 
     @Override
