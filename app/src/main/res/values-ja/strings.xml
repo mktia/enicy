@@ -64,8 +64,8 @@
 
     <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
     <string name="cancel">キャンセル</string>
-    <string name="user_list_only_following">フォロバなし</string>
-    <string name="user_list_only_followers">未フォロー</string>
+    <string name="user_list_only_following">フォロバされてない</string>
+    <string name="user_list_only_followers">フォローしてない</string>
     <string name="user_list_mulual_friends">相互</string>
     <string name="no_internet_connection">インターネットに接続されていません</string>
     <string name="no_users">ユーザーは見つかりませんでした</string>
