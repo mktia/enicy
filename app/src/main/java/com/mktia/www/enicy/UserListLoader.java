@@ -113,16 +113,15 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
 
     private List<InstagramUserSummary> analyse(List<InstagramUserSummary> followingList, List<InstagramUserSummary> followersList, int index) {
         List<InstagramUserSummary> onlyFollowingList = new ArrayList<>();
-        List<InstagramUserSummary> onlyFollowedList = followersList;
         List<InstagramUserSummary> mutualList = new ArrayList<>();
 
         for (InstagramUserSummary following: followingList) {
             int count = 0;
-            for (InstagramUserSummary followers: onlyFollowedList) {
+            for (InstagramUserSummary followers: followersList) {
                 count++;
                 if (following.equals(followers)) {
                     mutualList.add(following);
-                    onlyFollowedList.remove(followers);
+                    followersList.remove(followers);
                     break;
                 }
                 if (followersList.size() == count) {
@@ -137,7 +136,7 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
                 return onlyFollowingList;
             // not following
             case 2:
-                return onlyFollowedList;
+                return followersList;
             // mutual
             case 3:
                 return mutualList;
