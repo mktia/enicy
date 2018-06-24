@@ -94,6 +94,7 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
 
                         startActivity(intentToInstagram);
                     } else {
+                        // not working
                         Toast.makeText(getContext(), R.string.instagram_is_not_installed, Toast.LENGTH_SHORT).show();
                     }
                 } catch (PackageManager.NameNotFoundException e) {
