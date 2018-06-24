@@ -1,6 +1,7 @@
 package com.mktia.www.enicy;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.LoaderManager;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,7 +56,7 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
         assert connectivityManager != null;
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        ListView userListView = rootView.findViewById(R.id.list);
+        final ListView userListView = rootView.findViewById(R.id.list);
 
         mEmptyStateTextView = rootView.findViewById(R.id.empty_text);
         userListView.setEmptyView(mEmptyStateTextView);
@@ -74,6 +76,31 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
             mProgressBar.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
+
+        final PackageManager packageManager = getContext().getPackageManager();
+        final String instagramPackage = "com.instagram.android";
+
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                InstagramUserSummary user = (InstagramUserSummary) userListView.getItemAtPosition(i);
+
+                try {
+                    if (packageManager.getPackageInfo(instagramPackage, 0) != null) {
+                        Uri uri = Uri.parse("https://instagram.com/_u/" + user.getUsername());
+
+                        Intent intentToInstagram = new Intent(Intent.ACTION_VIEW, uri);
+                        intentToInstagram.setPackage(instagramPackage);
+
+                        startActivity(intentToInstagram);
+                    } else {
+                        Toast.makeText(getContext(), R.string.instagram_is_not_installed, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         MobileAds.initialize(getContext(), "ca-app-pub-3718490269566520~4782774815");
         mAdView = rootView.findViewById(R.id.ad_view);

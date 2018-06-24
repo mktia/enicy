@@ -71,4 +71,5 @@
     <string name="no_users">ユーザーは見つかりませんでした</string>
     <string name="empty_username_or_password">ユーザー名またはパスワードが入力されていません</string>
     <string name="wrong_account_information">ユーザー名またはパスワードが間違っています</string>
+    <string name="instagram_is_not_installed">インスタグラムのアプリがインストールされていません</string>
 </resources>
