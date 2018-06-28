@@ -9,4 +9,9 @@
 
     <!-- Primary dark color for the editor -->
     <color name="editorColorPrimaryDark">#394450</color>
+
+    <color name="pink">#E91E63</color>
+    <color name="purple">#9C27B0</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="blue">#2196F3</color>
 </resources>
