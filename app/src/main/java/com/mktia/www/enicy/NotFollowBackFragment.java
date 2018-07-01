@@ -183,8 +183,6 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
         if (users != null && !users.isEmpty()) {
             mUserAdapter.addAll(users);
 
-            // If users object is not empty, display update information
-
             // Display the number of users in the list
             int length = users.size();
             if (length == 1) {
