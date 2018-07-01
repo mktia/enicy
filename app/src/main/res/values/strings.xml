@@ -73,4 +73,6 @@
     <string name="empty_username_or_password">Username or Password is empty</string>
     <string name="wrong_account_information">Wrong username or password</string>
     <string name="instagram_is_not_installed">Instagram app is not installed</string>
+    <string name="people">people</string>
+    <string name="person">person</string>
 </resources>
