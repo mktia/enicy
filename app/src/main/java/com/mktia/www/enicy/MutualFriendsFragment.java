@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.CalendarContract;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -12,12 +13,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,7 +32,10 @@ import com.google.android.gms.ads.AdView;
 
 import com.mktia.www.enicy.data.MyAccountsContract.MyAccountsEntry;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import dev.niekirk.com.instagram4android.requests.payload.InstagramUserSummary;
@@ -40,10 +46,18 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
 
     public static final String LOG_TAG = MutualFriendsFragment.class.getName();
 
+    private NetworkInfo mNetworkInfo;
+    private SwipeRefreshLayout mSwipeRefresh;
     private ProgressBar mProgressBar;
     private TextView mEmptyStateTextView;
+    private LinearLayout mUpdateInformation;
+    private TextView mLengthOfList;
+    private TextView mUpdateDateTime;
     private UserAdapter mUserAdapter;
     private AdView mAdView;
+
+    private String mUserName;
+    private String mPassword;
 
     // Required empty public constructor
     public MutualFriendsFragment(){}
@@ -54,28 +68,42 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connectivityManager != null;
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        mNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         final ListView userListView = rootView.findViewById(R.id.list);
 
         mEmptyStateTextView = rootView.findViewById(R.id.empty_text);
         userListView.setEmptyView(mEmptyStateTextView);
+
+        // Create progressBar
         mProgressBar = rootView.findViewById(R.id.progressBar);
+
+        // Create LinearLayout
+        mUpdateInformation = rootView.findViewById(R.id.update_information);
+        mUpdateInformation.setVisibility(View.INVISIBLE);
+
+        // Create lengthOfList
+        mLengthOfList = rootView.findViewById(R.id.length_of_list);
+
+        // Create updateDateTime
+        mUpdateDateTime = rootView.findViewById(R.id.update_datetime);
+
+        // Create SwipeRefreshLayout
+        mSwipeRefresh = rootView.findViewById(R.id.swipe_refresh);
+        mSwipeRefresh.setColorSchemeResources(R.color.pink, R.color.purple);
 
         // Create a new adapter that takes an empty list of users as input
         mUserAdapter = new UserAdapter(getActivity(), new ArrayList<InstagramUserSummary>());
         userListView.setAdapter(mUserAdapter);
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // Get a reference to the LoaderManager, in order to interact with loaders.
-            LoaderManager loaderManager = getLoaderManager();
+        loadData(mNetworkInfo, true);
 
-            loaderManager.initLoader(MUTUAL_FRIENDS_LOADER_ID, null, this);
-        } else {
-            // If not connect to the Internet
-            mProgressBar.setVisibility(View.GONE);
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
-        }
+        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData(mNetworkInfo, false);
+            }
+        });
 
         final PackageManager packageManager = getContext().getPackageManager();
         final String instagramPackage = "com.instagram.android";
@@ -112,36 +140,39 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
 
     @Override
     public Loader<List<InstagramUserSummary>> onCreateLoader(int id, Bundle args) {
-        Intent intent = getActivity().getIntent();
-        Uri currentAccountUri = intent.getData();
+        if (mUserName == null && mPassword == null) {
+            Intent intent = getActivity().getIntent();
+            Uri currentAccountUri = intent.getData();
 
-        if (currentAccountUri == null) {
-            return null;
-        }
+            if (currentAccountUri == null) {
+                return null;
+            }
 
-        String[] projection = {
-                MyAccountsEntry._ID,
-                MyAccountsEntry.COLUMN_USERNAME,
-                MyAccountsEntry.COLUMN_PASSWORD
-        };
+            String[] projection = {
+                    MyAccountsEntry._ID,
+                    MyAccountsEntry.COLUMN_USERNAME,
+                    MyAccountsEntry.COLUMN_PASSWORD
+            };
 
-        Cursor cursor = getContext().getContentResolver().query(currentAccountUri, projection, null, null, null);
+            Cursor cursor = getContext().getContentResolver().query(currentAccountUri, projection, null, null, null);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            String userName = cursor.getString(cursor.getColumnIndex("username"));
-            String password = cursor.getString(cursor.getColumnIndex("password"));
-            cursor.close();
-
-            if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(password)) {
-                return new UserListLoader(getActivity(), userName, password, 3);
+            if (cursor != null && cursor.moveToFirst()) {
+                mUserName = cursor.getString(cursor.getColumnIndex("username"));
+                mPassword = cursor.getString(cursor.getColumnIndex("password"));
+                cursor.close();
             } else {
-                Toast.makeText(getContext(), R.string.empty_username_or_password, Toast.LENGTH_SHORT).show();
+                // If cursor is null, cannot create loader.
                 return null;
             }
         }
 
-        // If cursor is null, do not create loader.
-        return null;
+        // Already get data
+        if (!TextUtils.isEmpty(mUserName) && !TextUtils.isEmpty(mPassword)) {
+            return new UserListLoader(getActivity(), mUserName, mPassword, 3);
+        } else {
+            Toast.makeText(getContext(), R.string.empty_username_or_password, Toast.LENGTH_SHORT).show();
+            return null;
+        }
     }
 
     @Override
@@ -149,13 +180,35 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
         // Clear the adapter of previous data.
         mUserAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // If there is a valid list of {@link InstagramUserSummary}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
+        String message = "";
         if (users != null && !users.isEmpty()) {
             mUserAdapter.addAll(users);
+
+            // Display the number of users in the list
+            int length = users.size();
+            if (length == 1) {
+                message = "1 " + getText(R.string.person);
+            } else {
+                message = String.valueOf(length) + " " + getText(R.string.people);
+            }
         }
+        mLengthOfList.setText(message);
+
+        mUserAdapter.notifyDataSetChanged();
+
+        // Display current time
+        Calendar calendar = Calendar.getInstance();
+        String currentDateTime = DateFormat.getDateTimeInstance().format(calendar.getTime());
+        mUpdateDateTime.setText(currentDateTime);
+
+        // After getting currentDateTime, display update information
+        mUpdateInformation.setVisibility(View.VISIBLE);
 
         mProgressBar.setVisibility(View.GONE);
+
+        mSwipeRefresh.setRefreshing(false);
 
         mEmptyStateTextView.setText(R.string.no_users);
     }
@@ -164,5 +217,22 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
     public void onLoaderReset(Loader<List<InstagramUserSummary>> loader) {
         // Loader reset, so we can clear out our existing data.
         mUserAdapter.clear();
+    }
+
+    private void loadData(NetworkInfo networkInfo, boolean isFirst) {
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Get a reference to the LoaderManager, in order to interact with loaders.
+            LoaderManager loaderManager = getLoaderManager();
+
+            if (isFirst) {
+                loaderManager.initLoader(MUTUAL_FRIENDS_LOADER_ID, null, this);
+            } else {
+                loaderManager.restartLoader(MUTUAL_FRIENDS_LOADER_ID, null, this);
+            }
+        } else {
+            // If not connect to the Internet
+            mProgressBar.setVisibility(View.GONE);
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
     }
 }
