@@ -67,9 +67,9 @@
     <string name="cancel">Cancel</string>
     <string name="user_list_only_following">Not followback</string>
     <string name="user_list_only_followers">Not following</string>
-    <string name="user_list_mulual_friends">Mutual friends</string>
-    <string name="no_internet_connection">No internet connection.</string>
-    <string name="no_users">No users found.</string>
+    <string name="user_list_mulual_friends">Mutual followers</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_users">No users found</string>
     <string name="empty_username_or_password">Username or Password is empty</string>
     <string name="wrong_account_information">Wrong username or password</string>
     <string name="instagram_is_not_installed">Instagram app is not installed</string>
