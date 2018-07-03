@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MyAccountsActivity">
 
-    <item
+    <!-- <item
         android:id="@+id/action_delete_all_entries"
         android:title="@string/action_delete_all_entries"
+        app:showAsAction="never" /> -->
+
+    <item
+        android:id="@+id/how_to_use"
+        android:title="@string/how_to_use"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/faq"
+        android:title="@string/faq"
         app:showAsAction="never" />
 </menu>
