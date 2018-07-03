@@ -8,7 +8,9 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +21,8 @@ import android.widget.ListView;
 
 import com.mktia.www.enicy.data.MyAccountsContract.MyAccountsEntry;
 
+import java.util.Locale;
+
 /**
  * Displays list of my accounts that were entered and stored in the app.
  */
@@ -27,6 +31,9 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
     public static final String LOG_TAG = MyAccountsActivity.class.getSimpleName();
 
     public MyAccountsCursorAdapter mCursorAdapter;
+    public CustomTabsIntent mTabsIntent;
+
+    private static final String WEB_URL = "https://instagram.enicy.co";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +106,11 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
+        mTabsIntent = new CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .build();
+
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -115,8 +127,16 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Delete all entries" menu option
+            /*
             case R.id.action_delete_all_entries:
                 deleteAllMyAccounts();
+                return true;
+                */
+            case R.id.how_to_use:
+                openHowToUse();
+                return true;
+            case R.id.faq:
+                openFaq();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -124,6 +144,26 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
 
     private void deleteAllMyAccounts() {
         int rowsDeleted = getContentResolver().delete(MyAccountsEntry.CONTENT_URI, null, null);
+    }
+
+    private void openHowToUse() {
+        // Launch Chrome
+        mTabsIntent.launchUrl(this, Uri.parse(makeUri("how-to-use")));
+    }
+
+    private void openFaq() {
+        // Launch Chrome
+        mTabsIntent.launchUrl(this, Uri.parse(makeUri("faq")));
+    }
+
+    private String makeUri(String endpoint) {
+        String lang = Locale.getDefault().getLanguage();
+        String url = WEB_URL + "/" + endpoint;
+        if (!lang.equals("ja")) {
+            url = WEB_URL + "/en/" + endpoint;
+        }
+
+        return url;
     }
 
     @Override
