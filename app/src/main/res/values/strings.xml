@@ -75,4 +75,6 @@
     <string name="instagram_is_not_installed">Instagram app is not installed</string>
     <string name="people">people</string>
     <string name="person">person</string>
+    <string name="how_to_use">How to use</string>
+    <string name="faq">FAQ</string>
 </resources>

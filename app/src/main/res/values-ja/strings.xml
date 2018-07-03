@@ -74,4 +74,6 @@
     <string name="instagram_is_not_installed">インスタグラムのアプリがインストールされていません</string>
     <string name="people">人</string>
     <string name="person">人</string>
+    <string name="how_to_use">使い方</string>
+    <string name="faq">よくある質問</string>
 </resources>
