@@ -2,16 +2,12 @@
     <string name="app_name">ENICY</string>
     <string name="userName">Username</string>
     <string name="password">Password</string>
-    <string name="signIn">Sign in</string>
 
     <!-- Label for editor menu option to save account and leave editor [CHAR LIMIT=20] -->
     <string name="action_save">Save</string>
 
     <!-- Label for editor overflow menu option that deletes the current account [CHAR LIMIT=20] -->
     <string name="action_delete">Delete</string>
-
-    <!-- Label for overflow menu option that adds your account data in the app [CHAR LIMIT=20] -->
-    <string name="action_add_account">Add Your Accounts</string>
 
     <!-- Label for overflow menu option that deletes all account data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">Delete All Accounts</string>
@@ -65,14 +61,17 @@
 
     <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
+
     <string name="user_list_only_following">Not followback</string>
     <string name="user_list_only_followers">Not following</string>
     <string name="user_list_mulual_friends">Mutual followers</string>
+
     <string name="no_internet_connection">No internet connection</string>
     <string name="no_users">No users found</string>
     <string name="empty_username_or_password">Username or Password is empty</string>
     <string name="wrong_account_information">Wrong username or password</string>
     <string name="instagram_is_not_installed">Instagram app is not installed</string>
+
     <string name="people">people</string>
     <string name="person">person</string>
     <string name="how_to_use">How to use</string>

@@ -1,16 +1,12 @@
 <resources>
     <string name="userName">ユーザー名</string>
     <string name="password">パスワード</string>
-    <string name="signIn">ログイン</string>
 
     <!-- Label for editor menu option to save account and leave editor [CHAR LIMIT=20] -->
     <string name="action_save">保存</string>
 
     <!-- Label for editor overflow menu option that deletes the current account [CHAR LIMIT=20] -->
     <string name="action_delete">消去</string>
-
-    <!-- Label for overflow menu option that adds your account data in the app [CHAR LIMIT=20] -->
-    <string name="action_add_account">アカウント追加</string>
 
     <!-- Label for overflow menu option that deletes all account data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">全アカウント消去</string>
@@ -24,9 +20,9 @@
     <string name="empty_view_subtitle_text">アカウントを登録してください</string>
 
     <!-- Title for the activity to add your new account [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_account">アカウントを追加する</string>
+    <string name="editor_activity_title_new_account">アカウント追加</string>
 
-    <string name="editor_activity_title_edit_account">アカウントを編集する</string>
+    <string name="editor_activity_title_edit_account">アカウント編集</string>
 
     <!-- Toast message in editor when new account has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_account_successful">保存しました</string>
@@ -64,14 +60,17 @@
 
     <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
     <string name="cancel">キャンセル</string>
+
     <string name="user_list_only_following">片思い</string>
     <string name="user_list_only_followers">片思われ</string>
     <string name="user_list_mulual_friends">相互</string>
+
     <string name="no_internet_connection">インターネットに接続されていません</string>
     <string name="no_users">ユーザーは見つかりませんでした</string>
     <string name="empty_username_or_password">ユーザー名またはパスワードが入力されていません</string>
     <string name="wrong_account_information">ユーザー名またはパスワードが間違っています</string>
     <string name="instagram_is_not_installed">インスタグラムのアプリがインストールされていません</string>
+
     <string name="people">人</string>
     <string name="person">人</string>
     <string name="how_to_use">使い方</string>
