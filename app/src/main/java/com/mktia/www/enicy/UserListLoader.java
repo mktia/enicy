@@ -23,20 +23,52 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
     private String mPassword;
     private int mIndex;
 
+    private boolean mIsStartedOne;
+    private boolean mIsStartedTwo;
+    private boolean mIsStartedThree;
+
     public UserListLoader(Context context, String userName, String password, int index) {
         super(context);
         mUserName = userName;
         mPassword = password;
         mIndex = index;
+
+        switch (mIndex) {
+            case 1:
+                mIsStartedOne = true;
+                break;
+            case 2:
+                mIsStartedTwo = true;
+                break;
+            case 3:
+                mIsStartedThree = true;
+                break;
+        }
     }
 
     @Override
     protected void onStartLoading() {
+        if ((mIndex == 1 && !mIsStartedOne) || (mIndex == 2 && !mIsStartedTwo) || (mIndex == 3 && !mIsStartedThree)) {
+            return;
+        }
+
         forceLoad();
     }
 
     @Override
     public List<InstagramUserSummary> loadInBackground() {
+        switch (mIndex) {
+            case 1:
+                mIsStartedOne = false;
+                break;
+            case 2:
+                mIsStartedTwo = false;
+                break;
+            case 3:
+                mIsStartedThree = false;
+                break;
+        }
+
         Instagram4Android instagram = Instagram4Android.builder().username(mUserName).password(mPassword).build();
         instagram.setup();
 
