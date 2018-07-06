@@ -16,6 +16,7 @@ public class UserListActivity extends AppCompatActivity {
 
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(2);
 
         // Create an adapter that knows which fragment should be shown on each page
         UserPagerAdapter adapter = new UserPagerAdapter(this, getSupportFragmentManager());
