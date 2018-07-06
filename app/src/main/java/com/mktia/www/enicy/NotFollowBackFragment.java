@@ -208,6 +208,8 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
         mSwipeRefresh.setRefreshing(false);
 
         mEmptyStateTextView.setText(R.string.no_users);
+
+        getLoaderManager().destroyLoader(NOT_FOLLOW_BACK_LOADER_ID);
     }
 
     @Override

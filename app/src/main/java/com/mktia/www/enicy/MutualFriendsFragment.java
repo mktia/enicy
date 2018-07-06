@@ -211,6 +211,8 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
         mSwipeRefresh.setRefreshing(false);
 
         mEmptyStateTextView.setText(R.string.no_users);
+
+        getLoaderManager().destroyLoader(MUTUAL_FRIENDS_LOADER_ID);
     }
 
     @Override
