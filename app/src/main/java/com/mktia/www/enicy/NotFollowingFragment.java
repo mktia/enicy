@@ -88,7 +88,7 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
 
         // Create SwipeRefreshLayout
         mSwipeRefresh = rootView.findViewById(R.id.swipe_refresh);
-        mSwipeRefresh.setColorSchemeResources(R.color.pink, R.color.purple);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorAccent);
 
         // Create a new adapter that takes an empty list of users as input
         mUserAdapter = new UserAdapter(getActivity(), new ArrayList<InstagramUserSummary>());
