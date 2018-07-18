@@ -9,7 +9,10 @@
         android:id="@+id/update_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -17,13 +20,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:hint="10 People" />
+            tools:text="10 People" />
 
         <TextView
             android:id="@+id/update_datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:hint="2018/7/1 12:34" />
+            tools:text="2018/7/1 12:34" />
 
     </LinearLayout>
 
