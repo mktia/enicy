@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FAFAFA</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Primary color for the editor -->
@@ -9,9 +8,4 @@
 
     <!-- Primary dark color for the editor -->
     <color name="editorColorPrimaryDark">#394450</color>
-
-    <color name="pink">#E91E63</color>
-    <color name="purple">#9C27B0</color>
-    <color name="indigo">#3F51B5</color>
-    <color name="blue">#2196F3</color>
 </resources>
