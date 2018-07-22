@@ -12,7 +12,7 @@
 
     <!-- Label -->
     <TextView
-        android:text="@string/editor_description"
+        tools:text="@string/editor_description"
         style="@style/EditorStyle" />
 
     <!-- Username field -->
