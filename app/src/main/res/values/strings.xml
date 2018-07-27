@@ -62,8 +62,11 @@
     <!-- Dialog button text for the option to cancel deletion of the current account [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
 
+    <!-- Title text for the not follow back fragment on tab layout [CHAR LIMIT=20] -->
     <string name="user_list_only_following">Not followback</string>
+    <!-- Title text for the not following fragment on tab layout [CHAR LIMIT=20] -->
     <string name="user_list_only_followers">Not following</string>
+    <!-- Title text for the mutual followers fragment on tab layout [CHAR LIMIT=20] -->
     <string name="user_list_mulual_friends">Mutual followers</string>
 
     <string name="no_internet_connection">No internet connection</string>
@@ -72,8 +75,13 @@
     <string name="wrong_account_information">Wrong username or password</string>
     <string name="instagram_is_not_installed">Instagram app is not installed</string>
 
+    <!-- Text for the fragment to count users of the list -->
     <string name="people">people</string>
+    <!-- Text for the fragment to count users of the list when it consist of 1 person -->
     <string name="person">person</string>
+
+    <!-- Label for overflow menu option that open `how to use` page [CHAR LIMIT=20] -->
     <string name="how_to_use">How to use</string>
+    <!-- Label for overflow menu option that open faq page [CHAR LIMIT=20] -->
     <string name="faq">FAQ</string>
 </resources>
