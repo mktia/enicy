@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -140,6 +141,14 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FinishAppDialogFragment finishFragment = new FinishAppDialogFragment();
+
+        finishFragment.show(fragmentManager, "dialog");
     }
 
     private void deleteAllMyAccounts() {
