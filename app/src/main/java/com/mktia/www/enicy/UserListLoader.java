@@ -2,8 +2,6 @@ package com.mktia.www.enicy;
 
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import dev.niekirk.com.instagram4android.Instagram4Android;
 import dev.niekirk.com.instagram4android.requests.InstagramGetUserFollowersRequest;
 import dev.niekirk.com.instagram4android.requests.InstagramGetUserFollowingRequest;
 import dev.niekirk.com.instagram4android.requests.payload.InstagramGetUserFollowersResult;
+import dev.niekirk.com.instagram4android.requests.payload.InstagramLoginResult;
 import dev.niekirk.com.instagram4android.requests.payload.InstagramUserSummary;
 
 public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> {
@@ -72,10 +71,28 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
         Instagram4Android instagram = Instagram4Android.builder().username(mUserName).password(mPassword).build();
         instagram.setup();
 
+        InstagramLoginResult loginResult = new InstagramLoginResult();
+
         try {
-            instagram.login();
+            loginResult = instagram.login();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        String loginStatus = loginResult.getMessage();
+        if (loginStatus != null) {
+            List<InstagramUserSummary> errorListSummary = new ArrayList<>();
+            InstagramUserSummary errorSummary = new InstagramUserSummary();
+
+            if (loginStatus.contains("password")) {
+                // The password is incorrect
+                errorSummary.setPk(-1);
+            } else if (loginStatus.contains("username")) {
+                // The username is not found
+                errorSummary.setPk(-2);
+            }
+            errorListSummary.add(errorSummary);
+            return errorListSummary;
         }
 
         long userId = instagram.getUserId();

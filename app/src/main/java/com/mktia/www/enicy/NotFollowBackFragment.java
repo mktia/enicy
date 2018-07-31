@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -170,6 +169,8 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
             return new UserListLoader(getActivity(), mUserName, mPassword, 1);
         } else {
             Toast.makeText(getContext(), R.string.empty_username_or_password, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getContext(), MyAccountsActivity.class));
+            // If cursor is null, cannot create loader.
             return null;
         }
     }
@@ -181,6 +182,18 @@ public class NotFollowBackFragment extends Fragment implements LoaderCallbacks<L
 
         String message = "";
         if (users != null && !users.isEmpty()) {
+
+            // Check login status and display the reason why the user is failed to login
+            long checkErrorStatus = users.get(0).getPk();
+            if (checkErrorStatus < 0) {
+                if (checkErrorStatus == -1) {
+                    Toast.makeText(getContext(), R.string.password_is_incorrect, Toast.LENGTH_SHORT).show();
+                } else if (checkErrorStatus == -2) {
+                    Toast.makeText(getContext(), R.string.username_is_not_found, Toast.LENGTH_SHORT).show();
+                }
+                startActivity(new Intent(getContext(), MyAccountsActivity.class));
+            }
+
             mUserAdapter.addAll(users);
 
             // Display the number of users in the list
