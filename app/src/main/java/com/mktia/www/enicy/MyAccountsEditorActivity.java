@@ -92,7 +92,7 @@ public class MyAccountsEditorActivity extends AppCompatActivity implements Loade
         String passwordString = mPasswordEditText.getText().toString().trim();
 
         if (mCurrentAccountUri == null
-                && TextUtils.isEmpty(usernameString) && TextUtils.isEmpty(passwordString)) {
+                && (TextUtils.isEmpty(usernameString) || TextUtils.isEmpty(passwordString))) {
             // Since no fields were modified, we can return early without creating a new pet.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
