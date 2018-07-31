@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">ENICY</string>
     <string name="userName">ユーザー名</string>
     <string name="password">パスワード</string>
 
@@ -71,8 +72,23 @@
     <string name="wrong_account_information">ユーザー名またはパスワードが間違っています</string>
     <string name="instagram_is_not_installed">インスタグラムのアプリがインストールされていません</string>
 
+    <!-- Text for the fragment to count users of the list -->
     <string name="people">人</string>
     <string name="person">人</string>
+
+    <!-- Label for overflow menu option that open `how to use` page [CHAR LIMIT=20] -->
     <string name="how_to_use">使い方</string>
+    <!-- Label for overflow menu option that open faq page [CHAR LIMIT=20] -->
     <string name="faq">よくある質問</string>
+
+    <!-- Toast message when the password the user entered is incorrect -->
+    <string name="password_is_incorrect">パスワードに誤りがあります。登録したパスワードを確認し、再度実行してください。</string>
+    <!-- Toast message when the password the user entered is not found -->
+    <string name="username_is_not_found">ユーザー名が見つかりません。登録したユーザー名を確認し、再度実行してください。</string>
+
+    <!-- Dialog message text for the fragment to close the app -->
+    <string name="dialog_close_app">アプリを終了しますか？</string>
+    <!-- Dialog button text for the fragment to close the app -->
+    <string name="finish">閉じる</string>
+
 </resources>
