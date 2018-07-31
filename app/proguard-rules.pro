@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#-keep class com.fasterxml.** { *; }
+#-keep class dev.niekirk.com.instagram4android.** { *; }
+#-keeps class okio.** { *; }
+-keepclassmembernames class com.fasterxml.** { *; }
+-keepclassmembernames class dev.niekirk.com.instagram4android.** { *; }
+-keepclassmembernames class okio.** { *; }
+-dontwarn com.fasterxml.**
+-dontwarn dev.niekirk.com.instagram4android.**
+-dontwarn okio.**
