@@ -81,18 +81,12 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
 
         String loginStatus = loginResult.getMessage();
         if (loginStatus != null) {
-            List<InstagramUserSummary> errorListSummary = new ArrayList<>();
-            InstagramUserSummary errorSummary = new InstagramUserSummary();
-
             if (loginStatus.contains("password")) {
-                // The password is incorrect
-                errorSummary.setPk(-1);
+                UserListActivity.mErrorCausedBy = "password";
             } else if (loginStatus.contains("username")) {
-                // The username is not found
-                errorSummary.setPk(-2);
+                UserListActivity.mErrorCausedBy = "username";
             }
-            errorListSummary.add(errorSummary);
-            return errorListSummary;
+            return null;
         }
 
         long userId = instagram.getUserId();

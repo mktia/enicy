@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -51,6 +52,7 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
     private LinearLayout mUpdateInformation;
     private TextView mLengthOfList;
     private TextView mUpdateDateTime;
+    private ListView mUserListView;
     private UserAdapter mUserAdapter;
     private AdView mAdView;
 
@@ -68,10 +70,10 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
         assert connectivityManager != null;
         mNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
-        final ListView userListView = rootView.findViewById(R.id.list);
+        mUserListView = rootView.findViewById(R.id.list);
 
         mEmptyStateTextView = rootView.findViewById(R.id.empty_text);
-        userListView.setEmptyView(mEmptyStateTextView);
+        mUserListView.setEmptyView(mEmptyStateTextView);
 
         // Create progressBar
         mProgressBar = rootView.findViewById(R.id.progressBar);
@@ -92,7 +94,7 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
 
         // Create a new adapter that takes an empty list of users as input
         mUserAdapter = new UserAdapter(getActivity(), new ArrayList<InstagramUserSummary>());
-        userListView.setAdapter(mUserAdapter);
+        mUserListView.setAdapter(mUserAdapter);
 
         loadData(mNetworkInfo, true);
 
@@ -106,10 +108,10 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
         final PackageManager packageManager = getContext().getPackageManager();
         final String instagramPackage = "com.instagram.android";
 
-        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mUserListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                InstagramUserSummary user = (InstagramUserSummary) userListView.getItemAtPosition(i);
+                InstagramUserSummary user = (InstagramUserSummary) mUserListView.getItemAtPosition(i);
 
                 try {
                     if (packageManager.getPackageInfo(instagramPackage, 0) != null) {
@@ -184,18 +186,6 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
         // data set. This will trigger the ListView to update.
         String message = "";
         if (users != null && !users.isEmpty()) {
-
-            // Check login status and display the reason why the user is failed to login
-            long checkErrorStatus = users.get(0).getPk();
-            if (checkErrorStatus < 0) {
-                if (checkErrorStatus == -1) {
-                    Toast.makeText(getContext(), R.string.password_is_incorrect, Toast.LENGTH_SHORT).show();
-                } else if (checkErrorStatus == -2) {
-                    Toast.makeText(getContext(), R.string.username_is_not_found, Toast.LENGTH_SHORT).show();
-                }
-                startActivity(new Intent(getContext(), MyAccountsActivity.class));
-            }
-
             mUserAdapter.addAll(users);
 
             // Display the number of users in the list
@@ -205,7 +195,19 @@ public class NotFollowingFragment extends Fragment implements LoaderCallbacks<Li
             } else {
                 message = String.valueOf(length) + " " + getText(R.string.people);
             }
+        } else if (users == null) {
+            switch (UserListActivity.mErrorCausedBy) {
+                case "password":
+                    new IncorrectPasswordDialogFragment().show(getFragmentManager(), "username");
+                    break;
+                case "username":
+                    new NotFoundUserDialogFragment().show(getFragmentManager(), "password");
+                    break;
+                default:
+                    break;
+            }
         }
+
         mLengthOfList.setText(message);
 
         mUserAdapter.notifyDataSetChanged();

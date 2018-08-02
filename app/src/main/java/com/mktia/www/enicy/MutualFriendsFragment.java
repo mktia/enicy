@@ -186,18 +186,6 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
         // data set. This will trigger the ListView to update.
         String message = "";
         if (users != null && !users.isEmpty()) {
-
-            // Check login status and display the reason why the user is failed to login
-            long checkErrorStatus = users.get(0).getPk();
-            if (checkErrorStatus < 0) {
-                if (checkErrorStatus == -1) {
-                    Toast.makeText(getContext(), R.string.password_is_incorrect, Toast.LENGTH_SHORT).show();
-                } else if (checkErrorStatus == -2) {
-                    Toast.makeText(getContext(), R.string.username_is_not_found, Toast.LENGTH_SHORT).show();
-                }
-                startActivity(new Intent(getContext(), MyAccountsActivity.class));
-            }
-
             mUserAdapter.addAll(users);
 
             // Display the number of users in the list
@@ -207,7 +195,19 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
             } else {
                 message = String.valueOf(length) + " " + getText(R.string.people);
             }
+        } else if (users == null) {
+            switch (UserListActivity.mErrorCausedBy) {
+                case "password":
+                    new IncorrectPasswordDialogFragment().show(getFragmentManager(), "username");
+                    break;
+                case "username":
+                    new NotFoundUserDialogFragment().show(getFragmentManager(), "password");
+                    break;
+                default:
+                    break;
+            }
         }
+
         mLengthOfList.setText(message);
 
         mUserAdapter.notifyDataSetChanged();
