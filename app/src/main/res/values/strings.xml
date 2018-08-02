@@ -85,13 +85,16 @@
     <!-- Label for overflow menu option that open faq page [CHAR LIMIT=20] -->
     <string name="faq">FAQ</string>
 
-    <!-- Toast message when the password the user entered is incorrect -->
-    <string name="password_is_incorrect">The password you entered is incorrect. Please check your password and try again.</string>
-    <!-- Toast message when the username the user entered is not found -->
-    <string name="username_is_not_found">The username you entered is not found. Please check your username and try again.</string>
+    <!-- Dialog message when the password the user entered is incorrect -->
+    <string name="password_is_incorrect">The password you entered is incorrect. \nPlease check your password and try again.</string>
+    <!-- Dialog message when the username the user entered is not found -->
+    <string name="username_is_not_found">The username you entered is not found. \nPlease check your username and try again.</string>
 
     <!-- Dialog message text for the fragment to close the app -->
     <string name="dialog_close_app">Close the app?</string>
     <!-- Dialog button text for the fragment to close the app -->
     <string name="finish">Close</string>
+
+    <!-- Dialog button text -->
+    <string name="ok">OK</string>
 </resources>
