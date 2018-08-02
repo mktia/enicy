@@ -19,7 +19,8 @@ public class FinishAppDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getActivity().finish();
+                        MyAccountsActivity.mFinishApp = true;
+                        getActivity().finishAndRemoveTask();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

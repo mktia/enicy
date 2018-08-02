@@ -36,10 +36,14 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
 
     private static final String WEB_URL = "https://instagram.enicy.co";
 
+    public static boolean mFinishApp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_accounts);
+
+        mFinishApp = false;
 
         // Setup FAB to open MyAccountEditorActivity
         FloatingActionButton fab = findViewById(R.id.floating_action_button);
@@ -149,6 +153,15 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
         FinishAppDialogFragment finishFragment = new FinishAppDialogFragment();
 
         finishFragment.show(fragmentManager, "dialog");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mFinishApp) {
+            finishAndRemoveTask();
+        }
     }
 
     private void deleteAllMyAccounts() {
