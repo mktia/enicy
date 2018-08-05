@@ -24,6 +24,9 @@ import com.mktia.www.enicy.data.MyAccountsContract.MyAccountsEntry;
 
 import java.util.Locale;
 
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
+
 /**
  * Displays list of my accounts that were entered and stored in the app.
  */
@@ -49,6 +52,20 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
         if (mFirstOpen) {
             new FirstOpenDialogFragment().show(getSupportFragmentManager(), "what_is_new");
         }
+
+        AppRate.with(this)
+                .setInstallDays(2)
+                .setRemindInterval(7)
+                .setShowNeverButton(false)
+                .setOnClickButtonListener(new OnClickButtonListener() {
+                    @Override
+                    public void onClickButton(int which) {
+                        // Log.d(LOG_TAG, "onClickButton: " + Integer.toString(which));
+                    }
+                })
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(this);
 
         // Setup FAB to open MyAccountEditorActivity
         FloatingActionButton fab = findViewById(R.id.floating_action_button);
