@@ -84,6 +84,10 @@
     <string name="how_to_use">How to use</string>
     <!-- Label for overflow menu option that open faq page [CHAR LIMIT=20] -->
     <string name="faq">FAQ</string>
+    <!-- Label for overflow menu option that open google form [CHAR LIMIT=20] -->
+    <string name="inquiry">Inquiry</string>
+    <!-- Label for overflow menu option that open google form [CHAR LIMIT=20] -->
+    <string name="report_bugs">Report bugs</string>
 
     <!-- Dialog message when the password the user entered is incorrect -->
     <string name="password_is_incorrect">The password you entered is incorrect. \nPlease check your password and try again.</string>

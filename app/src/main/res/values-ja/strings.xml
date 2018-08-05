@@ -80,6 +80,10 @@
     <string name="how_to_use">使い方</string>
     <!-- Label for overflow menu option that open faq page [CHAR LIMIT=20] -->
     <string name="faq">よくある質問</string>
+    <!-- Label for overflow menu option that open google form [CHAR LIMIT=20] -->
+    <string name="inquiry">ご意見・ご要望</string>
+    <!-- Label for overflow menu option that open google form [CHAR LIMIT=20] -->
+    <string name="report_bugs">バグ報告</string>
 
     <!-- Toast message when the password the user entered is incorrect -->
     <string name="password_is_incorrect">パスワードに誤りがあります。\nインスタグラムに登録したパスワードを確認し、再度実行してください。</string>

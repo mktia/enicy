@@ -143,6 +143,12 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
             case R.id.faq:
                 openFaq();
                 return true;
+            case R.id.inquiry:
+                openForm();
+                return true;
+            case R.id.report_bugs:
+                openForm();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -176,6 +182,20 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
     private void openFaq() {
         // Launch Chrome
         mTabsIntent.launchUrl(this, Uri.parse(makeUri("faq")));
+    }
+
+    private void openForm() {
+        String url;
+
+        // Open google form page
+        if (Locale.getDefault().getLanguage().equals("ja")) {
+            url = "https://goo.gl/forms/fMFWCvA8j93Rjw9W2";
+        } else {
+            url = "https://goo.gl/forms/4AXIiazcA2Tmn4NA2";
+        }
+
+        // Launch Chrome
+        mTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     private String makeUri(String endpoint) {

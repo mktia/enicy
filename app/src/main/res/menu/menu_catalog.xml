@@ -18,4 +18,14 @@
         android:id="@+id/faq"
         android:title="@string/faq"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/inquiry"
+        android:title="@string/inquiry"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/report_bugs"
+        android:title="@string/report_bugs"
+        app:showAsAction="never" />
 </menu>
