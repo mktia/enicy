@@ -97,4 +97,9 @@
 
     <!-- Dialog button text -->
     <string name="ok">OK</string>
+
+    <!-- Dialog title text which is displayed when the user open first -->
+    <string name="what_is_new">アプリの新機能</string>
+    <!-- Dialog message which is displayed when the user open first -->
+    <string name="contents_of_what_is_new">トップページのメニューにお問い合わせフォームやバグ報告を追加しました。</string>
 </resources>

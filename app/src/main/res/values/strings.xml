@@ -101,4 +101,9 @@
 
     <!-- Dialog button text -->
     <string name="ok">OK</string>
+
+    <!-- Dialog title text which is displayed when the user open first -->
+    <string name="what_is_new">What\'s new</string>
+    <!-- Dialog message which is displayed when the user open first -->
+    <string name="contents_of_what_is_new">You can send your feedback. Please open the menu.</string>
 </resources>
