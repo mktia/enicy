@@ -37,7 +37,7 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
     public MyAccountsCursorAdapter mCursorAdapter;
     public CustomTabsIntent mTabsIntent;
 
-    private static final String WEB_URL = "https://instagram.enicy.co";
+    public static final String WEB_URL = "https://instagram.enicy.co";
 
     public static boolean mFinishApp;
 
@@ -222,7 +222,7 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
         mTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
-    private String makeUri(String endpoint) {
+    public String makeUri(String endpoint) {
         String lang = Locale.getDefault().getLanguage();
         String url = WEB_URL + "/" + endpoint;
         if (!lang.equals("ja")) {
