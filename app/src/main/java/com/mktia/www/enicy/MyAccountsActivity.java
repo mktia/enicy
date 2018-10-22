@@ -39,7 +39,6 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
 
     private static final String WEB_URL = "https://instagram.enicy.co";
 
-    public static boolean mFirstOpen = true;
     public static boolean mFinishApp;
 
     @Override
@@ -48,10 +47,6 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
         setContentView(R.layout.activity_my_accounts);
 
         mFinishApp = false;
-
-        if (mFirstOpen) {
-            new FirstOpenDialogFragment().show(getSupportFragmentManager(), "what_is_new");
-        }
 
         AppRate.with(this)
                 .setInstallDays(2)
