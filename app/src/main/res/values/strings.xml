@@ -102,12 +102,15 @@
     <!-- Dialog button text -->
     <string name="ok">OK</string>
 
-    <!-- Dialog title text which is displayed when the user open first -->
-    <string name="what_is_new">What\'s new</string>
-    <!-- Dialog message which is displayed when the user open first -->
-    <string name="contents_of_what_is_new">You can send your feedback. Please open the menu.</string>
-
     <!-- Customize AppRate dialog setting -->
     <string name="rate_dialog_message">If you are satisfied with ENICY, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
+    <string name="rate_dialog_ok">Rate it</string>
+    <string name="rate_dialog_cancel">After</string>
+    <string name="rate_dialog_no">Close</string>
 
+    <!-- Text message for those who forgot password -->
+    <string name="forgot_password">Forgot password?</string>
+
+    <!-- Text message for those who signed up using facebook -->
+    <string name="signed_up_with_fb">Signed up with Facebook?</string>
 </resources>

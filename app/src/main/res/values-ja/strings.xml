@@ -98,14 +98,15 @@
     <!-- Dialog button text -->
     <string name="ok">OK</string>
 
-    <!-- Dialog title text which is displayed when the user open first -->
-    <string name="what_is_new">アプリの新機能</string>
-    <!-- Dialog message which is displayed when the user open first -->
-    <string name="contents_of_what_is_new">トップページのメニューにお問い合わせフォームやバグ報告を追加しました。</string>
-
     <!-- Customize AppRate dialog setting -->
     <string name="rate_dialog_message">ENICY をご利用いただき、ありがとうございます。1分ほどで終わりますので、もしよろしければ評価をお願いいたします！</string>
     <string name="rate_dialog_ok">評価する</string>
     <string name="rate_dialog_cancel">後で</string>
     <string name="rate_dialog_no">閉じる</string>
+
+    <!-- Text message for those who forgot password -->
+    <string name="forgot_password">パスワードを忘れた場合</string>
+
+    <!-- Text message for those who signed up using facebook -->
+    <string name="signed_up_with_fb">Facebook で登録した方はこちら</string>
 </resources>
