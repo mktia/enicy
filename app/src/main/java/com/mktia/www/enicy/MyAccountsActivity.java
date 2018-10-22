@@ -134,6 +134,13 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
                 .build();
 
         getLoaderManager().initLoader(0, null, this);
+
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+
+
     }
 
     @Override
@@ -245,4 +252,6 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursorAdapter.swapCursor(null);
     }
+
+
 }
