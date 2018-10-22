@@ -10,7 +10,9 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -18,9 +20,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mktia.www.enicy.data.MyAccountsContract.MyAccountsEntry;
+import com.mktia.www.enicy.MyAccountsActivity;
+
+import java.util.Locale;
 
 /**
  * Allows user to create a new account or edit an existing one.
@@ -48,6 +54,9 @@ public class MyAccountsEditorActivity extends AppCompatActivity implements Loade
     private static final int EXISTING_ACCOUNT_LOADER = 0;
 
     private boolean mAccountHasChanged = false;
+
+    private CustomTabsIntent mTabsIntent;
+    private final MyAccountsActivity mActivity = new MyAccountsActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +86,43 @@ public class MyAccountsEditorActivity extends AppCompatActivity implements Loade
         }
 
         // Find all relevant views that we will need to read user input from
-        mUserNameEditText = (EditText) findViewById(R.id.edit_account_username);
-        mPasswordEditText = (EditText) findViewById(R.id.edit_account_password);
+        mUserNameEditText = findViewById(R.id.edit_account_username);
+        mPasswordEditText = findViewById(R.id.edit_account_password);
 
         mUserNameEditText.setOnTouchListener(mTouchListener);
         mPasswordEditText.setOnTouchListener(mTouchListener);
+
+        TextView forgotPassword = findViewById(R.id.forgot_password);
+        TextView signedUpWithFB = findViewById(R.id.signed_up_with_fb);
+
+        mTabsIntent = new CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .build();
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.instagram.com/accounts/password/reset/";
+
+                if (Locale.getDefault().getLanguage().equals("ja")) {
+                    url += "?hl=ja";
+                }
+
+                openWebSite(url);
+            }
+        });
+
+        signedUpWithFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebSite(mActivity.makeUri("change-password"));
+            }
+        });
+    }
+
+    private void openWebSite(String url) {
+        mTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     /**
