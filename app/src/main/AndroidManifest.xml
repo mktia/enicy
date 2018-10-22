@@ -19,6 +19,16 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="instagram.enicy.co" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MyAccountsEditorActivity"
@@ -36,6 +46,10 @@
             android:authorities="com.mktia.www.enicy"
             android:name=".data.MyAccountsProvider"
             android:exported="false" />
+
+        <meta-data
+            android:name="google_analytics_add_collection_enabled"
+            android:value="false" />
     </application>
 
 </manifest>
