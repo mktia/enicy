@@ -1,6 +1,8 @@
 package com.mktia.www.enicy;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import dev.niekirk.com.instagram4android.requests.payload.InstagramUser;
 import dev.niekirk.com.instagram4android.requests.payload.InstagramUserSummary;
 
 public class UserAdapter extends ArrayAdapter<InstagramUserSummary> {
@@ -30,10 +31,16 @@ public class UserAdapter extends ArrayAdapter<InstagramUserSummary> {
 
         TextView userNameTextView = listItemView.findViewById(R.id.user_name);
         TextView fullNameTextView = listItemView.findViewById(R.id.full_name);
-        // ImageView iconImageView = listItemView.findViewById(R.id.icon);
+        ImageView userImageView = listItemView.findViewById(R.id.user_icon);
 
-        userNameTextView.setText("@" + currentUser.getUsername());
+        userNameTextView.setText(getContext().getString(R.string.account_name, currentUser.getUsername()));
         fullNameTextView.setText(currentUser.getFull_name());
+
+        GlideApp.with(getContext())
+                .load(currentUser.getProfile_pic_url())
+                .error(new ColorDrawable(Color.LTGRAY))
+                .circleCrop()
+                .into(userImageView);
 
         return listItemView;
     }

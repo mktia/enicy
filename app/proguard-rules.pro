@@ -20,6 +20,22 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-keep class com.fasterxml.** { *; }
+-keep class dev.niekirk.com.instagram4android.** { *; }
+-keep class okio.** { *; }
+-dontwarn com.fasterxml.**
+-dontwarn dev.niekirk.com.instagram4android.**
+-dontwarn okio.**
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+-dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
+
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
 
@@ -31,12 +47,3 @@
 
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
-
--keep class com.fasterxml.** { *; }
--keep class dev.niekirk.com.instagram4android.** { *; }
--keep class okio.** { *; }
--keep class com.squareup.** { *; }
--dontwarn com.fasterxml.**
--dontwarn dev.niekirk.com.instagram4android.**
--dontwarn okio.**
--dontwarn com.squareup.**

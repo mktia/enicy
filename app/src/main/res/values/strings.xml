@@ -113,4 +113,7 @@
 
     <!-- Text message for those who signed up using facebook -->
     <string name="signed_up_with_fb">Signed up with Facebook?</string>
+
+    <!-- Label for user list -->
+    <string name="account_name">"@"%1$s</string>
 </resources>
