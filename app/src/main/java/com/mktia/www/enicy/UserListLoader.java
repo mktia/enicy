@@ -2,6 +2,7 @@ package com.mktia.www.enicy;
 
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,9 +69,12 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
                 break;
         }
 
+        Log.d(LOG_TAG, "loadInBackground: Start setup");
+
         Instagram4Android instagram = Instagram4Android.builder().username(mUserName).password(mPassword).build();
         instagram.setup();
 
+        Log.d(LOG_TAG, "loadInBackground: Start login");
         InstagramLoginResult loginResult = new InstagramLoginResult();
 
         try {
@@ -86,7 +90,10 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
             } else if (loginStatus.contains("username")) {
                 UserListActivity.mErrorCausedBy = "username";
             }
+            Log.d(LOG_TAG, "loadInBackground: " + loginStatus);
             return null;
+        } else {
+            Log.d(LOG_TAG, "loadInBackground: succeeded login");
         }
 
         long userId = instagram.getUserId();
@@ -94,9 +101,20 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
             return null;
         }
 
+//        List<InstagramUserSummary> followingList = new ArrayList<>();
+//        List<InstagramUserSummary> followersList = new ArrayList<>();
+//
+//        try {
+//            followingList = getFollowing(instagram, userId);
+//            followersList = getFollowers(instagram, userId);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         List<InstagramUserSummary> followingList = getFollowing(instagram, userId);
         List<InstagramUserSummary> followersList = getFollowers(instagram, userId);
 
+        Log.d(LOG_TAG, "loadInBackground: start analyse");
         return analyse(followingList, followersList, mIndex);
     }
 
@@ -122,6 +140,7 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
             }
         } catch (IOException e) {
             e.printStackTrace();
+//            throw e;
         }
 
         return returnList;
@@ -148,9 +167,12 @@ public class UserListLoader extends AsyncTaskLoader<List<InstagramUserSummary>> 
                 }
             }
         } catch (IOException e) {
+            Log.d(LOG_TAG, "getFollowing: error");
             e.printStackTrace();
+//            throw e;
         }
 
+        Log.d(LOG_TAG, "getFollowing: Return following list");
         return returnList;
     }
 

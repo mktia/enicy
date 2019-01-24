@@ -195,13 +195,13 @@ public class MutualFriendsFragment extends Fragment implements LoaderCallbacks<L
             } else {
                 message = String.valueOf(length) + " " + getText(R.string.people);
             }
-        } else if (users == null) {
+        } else if (users == null && UserListActivity.mErrorCausedBy != null) {
             switch (UserListActivity.mErrorCausedBy) {
                 case "password":
-                    new IncorrectPasswordDialogFragment().show(getFragmentManager(), "username");
+                    new IncorrectPasswordDialogFragment().show(getFragmentManager(), "password");
                     break;
                 case "username":
-                    new NotFoundUserDialogFragment().show(getFragmentManager(), "password");
+                    new NotFoundUserDialogFragment().show(getFragmentManager(), "username");
                     break;
                 default:
                     break;
