@@ -60,7 +60,10 @@ public class MyAccountsActivity extends AppCompatActivity implements LoaderManag
                 })
                 .monitor();
 
-        AppRate.showRateDialogIfMeetsConditions(this);
+        //AppRate.showRateDialogIfMeetsConditions(this);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        new SayonaraDialogFragment().show(fragmentManager, "notification");
 
         // Setup FAB to open MyAccountEditorActivity
         FloatingActionButton fab = findViewById(R.id.floating_action_button);
